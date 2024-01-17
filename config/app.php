@@ -171,6 +171,7 @@ return [
         \Modules\Post\Providers\PostServiceProvider::class,
         \Modules\Comment\Providers\CommentServiceProvider::class,
         \Modules\User\Providers\UserServiceProvider::class,
+        \Modules\Tag\Providers\TagServiceProvider::class,
     ])->toArray(),
 
     /*
