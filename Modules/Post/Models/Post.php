@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Modules\Comment\Models\Comment;
 use Modules\Post\Database\Factories\PostFactory;
+use Modules\Tag\Models\Tag;
 use Modules\User\Models\User;
 
 class Post extends Model
@@ -30,5 +31,10 @@ class Post extends Model
     public function creator()
     {
         return $this->belongsTo(User::class , "created_by");
+    }
+
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class,"tag_post");
     }
 }

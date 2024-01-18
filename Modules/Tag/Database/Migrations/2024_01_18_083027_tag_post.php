@@ -11,10 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tags', function (Blueprint $table) {
-            $table->id();
-            $table->string("name");
-            $table->timestamps();
+        Schema::create("tag_post" , function (Blueprint $table){
+            $table->foreignIdFor(\Modules\Tag\Models\Tag::class , "tag_id");
+            $table->foreignIdFor(\Modules\Post\Models\Post::class , "post_id");
         });
     }
 
@@ -23,6 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tags');
+        Schema::dropIfExists("tag_post");
     }
 };

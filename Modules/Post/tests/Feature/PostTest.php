@@ -5,6 +5,7 @@ namespace Modules\Post\tests\Feature;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Modules\Comment\Models\Comment;
 use Modules\Post\Models\Post;
+use Modules\Tag\Models\Tag;
 use Modules\User\Models\User;
 use Tests\TestCase;
 
@@ -56,5 +57,21 @@ class PostTest extends TestCase
 
          $this->assertTrue(isset($post->creator->id));
          $this->assertTrue($post->creator instanceof User);
+    }
+
+    /**
+     * @test
+     * @return void
+     */
+    public function PostRelationWithTag()
+    {
+        $count = round(1,11);
+
+        $post = Post::factory()
+            ->hasTags($count)
+            ->create();
+
+        $this->assertTrue(isset($post->tags->first()->id));
+        $this->assertTrue($post->tags->first() instanceof Tag);
     }
 }
